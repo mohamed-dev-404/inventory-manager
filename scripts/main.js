@@ -35,14 +35,14 @@ if (localStorage.products != null) {
 
 create.onclick = function () {
     let newProduct = {
-        productName: productName.value,
+        productName: productName.value.toLowerCase(),
         price: price.value,
         taxes: taxes.value,
         ads: ads.value,
         discount: discount.value,
         totalPrice: totalPrice.innerHTML,
         count: count.value,
-        category: category.value
+        category: category.value.toLowerCase()
     };
 
     if (mode == 'create') {
@@ -164,14 +164,65 @@ function switchToCreateMode() {
 let searchMode = 'name'; //default search mode
 
 function getSearchMode(btnId) {
-    let search = document.getElementById('search');
+    let searchInput = document.getElementById('search');
     if (btnId == 'searchCategoty') {
         searchMode = 'category';
-        search.placeholder = 'Enter category to search';
+        searchInput.placeholder = 'Enter category to search';
     }
     else {
         searchMode = 'name';
-        search.placeholder = 'Enter product name to search';
+        searchInput.placeholder = 'Enter product name to search';
     }
-    search.focus(); // focus serch field when click on any search button
+    searchInput.focus(); // focus serch field when click on any search button
+
+    if (searchInput.value != '') {
+        search(searchInput.value);
+    }
+}
+
+function search(value) {
+    let searchTable = '';
+    if (searchMode == 'name') {
+        for (let i = 0; i < productList.length; i++) {
+            if (productList[i].productName.includes(value.toLowerCase())) {
+                searchTable +=
+                    `
+                    <tr>
+                        <td>${i}</td>
+                        <td>${productList[i].productName}</td>
+                        <td>${productList[i].price}</td>
+                        <td>${productList[i].taxes}</td>
+                        <td>${productList[i].ads}</td>
+                        <td>${productList[i].discount}</td>
+                        <td>${productList[i].totalPrice}</td>
+                        <td>${productList[i].category}</td>
+                        <td><button onClick="updateProductById(${i})" id="update">update</button></td>
+                        <td><button onClick="deleteProductById(${i})" id="delete">delete</button></td>
+                    </tr>
+                    `;
+            }
+        }
+    } else {
+        for (let i = 0; i < productList.length; i++) {
+            if (productList[i].category.includes(value.toLowerCase())) {
+                searchTable +=
+                    `
+                    <tr>
+                        <td>${i}</td>
+                        <td>${productList[i].productName}</td>
+                        <td>${productList[i].price}</td>
+                        <td>${productList[i].taxes}</td>
+                        <td>${productList[i].ads}</td>
+                        <td>${productList[i].discount}</td>
+                        <td>${productList[i].totalPrice}</td>
+                        <td>${productList[i].category}</td>
+                        <td><button onClick="updateProductById(${i})" id="update">update</button></td>
+                        <td><button onClick="deleteProductById(${i})" id="delete">delete</button></td>
+                    </tr>
+                    `;
+            }
+
+        }
+    }
+    document.getElementById('tbody').innerHTML = searchTable;
 }

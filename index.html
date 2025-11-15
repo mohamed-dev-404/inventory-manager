@@ -32,7 +32,7 @@
 
         <div class="view">
             <div class="searchBlock">
-                <input id="search" type="text" placeholder="search here">
+                <input onkeyup = "search(this.value)" id ="search" type="text" placeholder="search here">
                 <div class="searchButtons">
                     <button onclick="getSearchMode(this.id)" id="searchName">Search by product name</button>
                     <button onclick="getSearchMode(this.id)" id="searchCategoty">Search by category</button>
