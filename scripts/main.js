@@ -20,7 +20,7 @@ function getTotalPrice() {
         totalPrice.innerHTML = "";
         totalPrice.style.background = "#DC2626";
     }
-} 
+}
 
 //* create Poduct
 let productList;
@@ -49,10 +49,23 @@ create.onclick = function () {
     } else {
         productList.push(newProduct);
     }
-    
-    //? save local Storage
+
+    //? save to local Storage
     localStorage.setItem('products', JSON.stringify(productList));
 
-   //todo: clearInputs(); //clear input fields
-  //todo: showProducts(); //show products
+    clearInputs(); //clear input fields
+    //todo: showProducts(); //show products
+}
+
+
+//! clear inputs fields
+function clearInputs() {
+    productName.value = '';
+    price.value = '';
+    taxes.value = '';
+    ads.value = '';
+    discount.value = '';
+    totalPrice.innerHTML = '';
+    count.value = '';
+    category.value = '';
 }
