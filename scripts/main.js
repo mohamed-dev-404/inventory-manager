@@ -25,6 +25,7 @@ function getTotalPrice() {
     }
 }
 
+
 //* create Poduct
 let productList;
 if (localStorage.products != null) {
@@ -45,25 +46,27 @@ create.onclick = function () {
         category: category.value.toLowerCase()
     };
 
-    if (mode == 'create') {
-        // meaning that we will create new product
-        if (count.value > 1) {
-            for (let i = 0; i < count.value; i++) {
+    if (productName.value != '' && price.value != '' && category.value != '') {
+        if (mode == 'create') {
+            // meaning that we will create new product
+            if (count.value > 1) {
+                for (let i = 0; i < count.value; i++) {
+                    productList.push(newProduct);
+                }
+            } else {
                 productList.push(newProduct);
             }
         } else {
-            productList.push(newProduct);
+            // meaning that we will update existing product
+            productList[tempId] = newProduct;
+            switchToCreateMode();
         }
-    } else {
-        // meaning that we will update existing product
-        productList[tempId] = newProduct;
-        switchToCreateMode();
+        clearInputs(); //clear input fields
     }
 
     //? save to local Storage
     localStorage.setItem('products', JSON.stringify(productList));
 
-    clearInputs(); //clear input fields
     showProducts(); //show products
 }
 
@@ -89,7 +92,7 @@ function showProducts() {
         productsTable +=
             `
                     <tr>
-                        <td>${i}</td>
+                        <td>${i+1}</td>
                         <td>${productList[i].productName}</td>
                         <td>${productList[i].price}</td>
                         <td>${productList[i].taxes}</td>
@@ -129,6 +132,7 @@ function deleteAllProducts() {
     productList.splice(0); //clear product list
     showProducts(); //update displayed product table
 }
+
 
 //* update product by id
 function updateProductById(productID) {
@@ -221,7 +225,6 @@ function search(value) {
                     </tr>
                     `;
             }
-
         }
     }
     document.getElementById('tbody').innerHTML = searchTable;
