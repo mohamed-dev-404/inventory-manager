@@ -95,3 +95,50 @@ button:hover {
 .searchButtons button {
     width: 45%;
 }
+
+#deleteAllBtn {
+    margin: 12px 0px;
+}
+
+/*? product table style*/
+table {
+    width: 100%;
+    text-align: center;
+    margin: 16px 0px;
+    border-radius: 6px;
+    border-collapse: collapse;
+    background-color: #1E1E1E;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+th,
+td {
+    padding: 8px 6px;
+}
+
+table th {
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #134aa4;
+    padding: 10px;
+}
+
+table th:hover {
+    color: #3B82F6;
+}
+
+table tr:nth-child(even) {
+    background-color: #2A2A2A;
+}
+
+table tr:hover {
+    background-color: #434343;
+    transition: 0.5s;
+}
+
+table button {
+    width: fit-content;
+    padding: 8px 16px;
+    margin: 2px 4px;
+    font-size: 0.9rem;
+}
