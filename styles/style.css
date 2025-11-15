@@ -81,3 +81,17 @@ button:hover {
     background-color: #143783;
     letter-spacing: 2px;
 }
+
+/*? search block style*/
+.searchBlock {
+    margin-top: 20px;
+}
+
+.searchButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchButtons button {
+    width: 45%;
+}
