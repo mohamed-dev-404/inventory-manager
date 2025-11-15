@@ -108,3 +108,11 @@ function deleteProductById(productID) {
     localStorage.setItem('products', JSON.stringify(productList)); //update local storage 
     showProducts(); //update displayed product table
 } 
+
+
+//* delete all products
+function deleteAllProducts() {
+    localStorage.clear(); //clear local storage
+    productList.splice(0); //clear product list
+    showProducts(); //update displayed product table
+}
