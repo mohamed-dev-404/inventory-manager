@@ -10,6 +10,9 @@ let category = document.getElementById("category");
 let create = document.getElementById("create");
 // console.log(productName,price,taxes,ads,discount,totalPrice,count,category,create);
 
+let mode = 'create'; //init app mode (will be create by default and change when click update)
+let tempId;
+
 //* get Total Price
 function getTotalPrice() {
     if (price.value != "") {
@@ -42,12 +45,19 @@ create.onclick = function () {
         category: category.value
     };
 
-    if (count.value > 1) {
-        for (let i = 0; i < count.value; i++) {
+    if (mode == 'create') {
+        // meaning that we will create new product
+        if (count.value > 1) {
+            for (let i = 0; i < count.value; i++) {
+                productList.push(newProduct);
+            }
+        } else {
             productList.push(newProduct);
         }
     } else {
-        productList.push(newProduct);
+        // meaning that we will update existing product
+        productList[tempId] = newProduct;
+        switchToCreateMode();
     }
 
     //? save to local Storage
@@ -73,6 +83,7 @@ function clearInputs() {
 
 //* show all product
 function showProducts() {
+    getTotalPrice(); //update total price
     let productsTable = '';
     for (let i = 0; i < productList.length; i++) {
         productsTable +=
@@ -92,6 +103,8 @@ function showProducts() {
                     `;
     }
     document.getElementById('tbody').innerHTML = productsTable;
+
+    // display delete All Button dynamically
     let deleteAllBtn = document.getElementById('deleteAllBtn');
     if (productList.length > 0) {
         deleteAllBtn.innerHTML = `<button onClick="deleteAllProducts()">Delete all (${productList.length})</button>`;
@@ -102,12 +115,12 @@ function showProducts() {
 showProducts();
 
 
-//* delete product by id and all products
+//* delete product by id
 function deleteProductById(productID) {
     productList.splice(productID, 1)
     localStorage.setItem('products', JSON.stringify(productList)); //update local storage 
     showProducts(); //update displayed product table
-} 
+}
 
 
 //* delete all products
@@ -115,4 +128,34 @@ function deleteAllProducts() {
     localStorage.clear(); //clear local storage
     productList.splice(0); //clear product list
     showProducts(); //update displayed product table
+}
+
+//* update product by id
+function updateProductById(productID) {
+    tempId = productID;
+    loadProductIntoFormToUpdate(productList[productID]);
+    switchToUpdateMode();
+    scroll({
+        top:0, //scroll page to most top
+        behavior:'smooth'
+    });
+}
+function loadProductIntoFormToUpdate(product) {
+    productName.value = product.productName;
+    price.value = product.price;
+    taxes.value = product.taxes;
+    ads.value = product.ads;
+    discount.value = product.discount;
+    getTotalPrice();
+    category.value = product.category;
+    count.style.display = 'none';
+}
+function switchToUpdateMode() {
+    mode = 'update'
+    create.innerHTML = 'Update'
+}
+function switchToCreateMode() {
+    mode = 'create'
+    create.innerHTML = 'Create'
+    count.style.display = 'block';
 }
