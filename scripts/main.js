@@ -136,8 +136,8 @@ function updateProductById(productID) {
     loadProductIntoFormToUpdate(productList[productID]);
     switchToUpdateMode();
     scroll({
-        top:0, //scroll page to most top
-        behavior:'smooth'
+        top: 0, //scroll page to most top
+        behavior: 'smooth'
     });
 }
 function loadProductIntoFormToUpdate(product) {
@@ -158,4 +158,20 @@ function switchToCreateMode() {
     mode = 'create'
     create.innerHTML = 'Create'
     count.style.display = 'block';
+}
+
+//* search for product
+let searchMode = 'name'; //default search mode
+
+function getSearchMode(btnId) {
+    let search = document.getElementById('search');
+    if (btnId == 'searchCategoty') {
+        searchMode = 'category';
+        search.placeholder = 'Enter category to search';
+    }
+    else {
+        searchMode = 'name';
+        search.placeholder = 'Enter product name to search';
+    }
+    search.focus(); // focus serch field when click on any search button
 }
