@@ -16,10 +16,68 @@ header {
     text-transform: uppercase;
     margin: 15px 0px;
 }
+
 header p {
     margin-top: 5px;
 }
+
 .page {
     width: 80%;
     margin: auto;
+}
+
+/*? input section style*/
+input {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: none;
+    padding: 6px;
+    margin: 6px;
+    border-radius: 4px;
+    background-color: #1E1E1E;
+    color: #fff;
+    transition: .7s;
+}
+
+input:focus {
+    background-color: #2D2D2D;
+    border: 1px solid #1a51a9;
+    transform: scale(1.04);
+}
+
+.price {
+    display: flex;
+    align-items: center;
+}
+
+#totalPrice {
+    width: 100%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #DC2626;
+    font-weight: 700;
+}
+
+#totalPrice::before {
+    content: 'Total : ';
+}
+
+button {
+    padding: 6px;
+    margin: 6px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #1a51a9;
+    color: #fff;
+    transition: .5s;
+}
+
+button:hover {
+    background-color: #143783;
+    letter-spacing: 2px;
 }
