@@ -9,3 +9,14 @@ let count = document.getElementById("count");
 let category = document.getElementById("category");
 let create = document.getElementById("create");
 // console.log(productName,price,taxes,ads,discount,totalPrice,count,category,create);
+//! get Total Price
+function getTotalPrice() {
+    if (price.value != "") {
+        let result = (+price.value + +taxes.value + +ads.value) - +discount.value;
+        totalPrice.innerHTML = result;
+        totalPrice.style.background = "#1aab4fff";
+    } else {
+        totalPrice.innerHTML = "";
+        totalPrice.style.background = "#DC2626";
+    }
+} 
