@@ -54,11 +54,11 @@ create.onclick = function () {
     localStorage.setItem('products', JSON.stringify(productList));
 
     clearInputs(); //clear input fields
-    //todo: showProducts(); //show products
+    showProducts(); //show products
 }
 
 
-//! clear inputs fields
+//* clear inputs fields
 function clearInputs() {
     productName.value = '';
     price.value = '';
@@ -69,3 +69,34 @@ function clearInputs() {
     count.value = '';
     category.value = '';
 }
+
+
+//* show all product
+function showProducts() {
+    let productsTable = '';
+    for (let i = 0; i < productList.length; i++) {
+        productsTable +=
+            `
+                    <tr>
+                        <td>${i}</td>
+                        <td>${productList[i].productName}</td>
+                        <td>${productList[i].price}</td>
+                        <td>${productList[i].taxes}</td>
+                        <td>${productList[i].ads}</td>
+                        <td>${productList[i].discount}</td>
+                        <td>${productList[i].totalPrice}</td>
+                        <td>${productList[i].category}</td>
+                        <td><button onClick="updateProductById(${i})" id="update">update</button></td>
+                        <td><button onClick="deleteProductById(${i})" id="delete">delete</button></td>
+                    </tr>
+                    `// productList[i];
+    }
+    document.getElementById('tbody').innerHTML = productsTable;
+    let deleteAllBtn = document.getElementById('deleteAllBtn');
+    if (productList.length > 0) {
+        deleteAllBtn.innerHTML = `<button onClick="deleteAllProducts()">Delete all (${productList.length})</button>`
+    } else {
+        deleteAllBtn.innerHTML = ``
+    }
+}
+showProducts();
