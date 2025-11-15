@@ -89,14 +89,22 @@ function showProducts() {
                         <td><button onClick="updateProductById(${i})" id="update">update</button></td>
                         <td><button onClick="deleteProductById(${i})" id="delete">delete</button></td>
                     </tr>
-                    `// productList[i];
+                    `;
     }
     document.getElementById('tbody').innerHTML = productsTable;
     let deleteAllBtn = document.getElementById('deleteAllBtn');
     if (productList.length > 0) {
-        deleteAllBtn.innerHTML = `<button onClick="deleteAllProducts()">Delete all (${productList.length})</button>`
+        deleteAllBtn.innerHTML = `<button onClick="deleteAllProducts()">Delete all (${productList.length})</button>`;
     } else {
-        deleteAllBtn.innerHTML = ``
+        deleteAllBtn.innerHTML = ``;
     }
 }
 showProducts();
+
+
+//* delete product by id and all products
+function deleteProductById(productID) {
+    productList.splice(productID, 1)
+    localStorage.setItem('products', JSON.stringify(productList)); //update local storage 
+    showProducts(); //update displayed product table
+} 
