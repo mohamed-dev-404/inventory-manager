@@ -60,8 +60,8 @@ Your product list is saved automatically in **LocalStorage**, giving you persist
 
 - **HTML5**
 - **CSS3**
-- **JavaScript (Vanilla JS)**
-- **LocalStorage API**
+- **JavaScript**
+- **LocalStorage**
 
 ---
 
