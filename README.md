@@ -52,7 +52,7 @@ Your product list is saved automatically in **LocalStorage**, giving you persist
 
 ### 🖼️ Interface Preview
 
-![Inventory Manager Screenshot]()
+![Inventory Manager Screenshot](asset/Screenshot.png)
 
 ---
 
