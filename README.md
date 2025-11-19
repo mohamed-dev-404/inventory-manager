@@ -80,9 +80,7 @@ This project is open-source and free for personal and educational use.
 
 ---
 ### 🌐 Live Demo  
-🔗 **Check the website here:** [Inventory Manager Live]()
-
-
+🔗 **Check the website Demo here:** [Inventory Manager Live](https://mohamed-dev-404.github.io/inventory-manager/)
 
 
 
